@@ -17,6 +17,7 @@ Node * getNode(int element)
     newNode->next=NULL;
     newNode->prev=NULL;
     return newNode;
+    printf("Hello world");
 }
 
 void insertElement(int new)
