@@ -104,40 +104,84 @@ Node *deleteAtPosition(Node *head, int i)
     return head;
 }
 
-int mid(Node *head)
+Node * mergeSorted(Node *head1, Node *head2)
 {
-    Node *rabbit=head->next;
-    Node *turtle=head;
-    while(rabbit!=NULL){
-    
-        rabbit=rabbit->next;
-        if(rabbit!=NULL)
-        {
-        rabbit=rabbit->next;
-        turtle=turtle->next;
-            
-        
-        }
-
+    Node *H =NULL;
+    Node *T = NULL;
+    if(head1->data < head2->data)
+    {
+        H=head1;
+        T=head1;
+        head1=head1->next;
+    }else{
+        H=head2;
+        T=head2;
+        head2=head2->next;
     }
-    int d=turtle->data;
-    return d;
 
+    while(head1!=NULL && head2!=NULL)
+    {
+        if(head1->data < head2->data)
+        {
+            T->next=head1;
+            head1=head1->next;
+            T=T->next;
+        }else{
+            T->next=head2;
+            head2=head2->next;
+            T=T->next;
+        }
+    }
+
+    if(head1==NULL)
+    {
+        T->next=head2;
+    }else{
+        T->next=head1;
+    }
+    return H;
 }
+
+Node * mergeSort(Node *head)
+{
+    if(head==NULL || head->next==NULL)
+    {
+        return head;
+    }
+
+    Node *fast=head->next;
+    Node *slow=head;
+
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    Node *firstLast=slow;
+    slow=slow->next;
+    firstLast->next=NULL;
+
+    head=mergeSort(head); 
+    slow=mergeSort(slow);
+
+    head=mergeSorted(head,slow);
+
+    return head;
+}
+
 
 void print(Node *head)
 {
     Node *temp=head;
+    int l=0;
     while (temp != NULL)
     {
         cout <<temp->data << " ";
         temp=temp->next;
+        l++;
     }
     cout << endl;
-    int len=length1(head);
-    cout << "Length->" << len << endl;
-    int midElement=mid(head);
-    cout<<"Mid->"<<midElement<<endl;
+    cout << "Length->" << l<< endl;
 }
 
 int main()
@@ -145,13 +189,10 @@ int main()
 
     // Method to take input till input!=-1
     Node *head = takeInput();
+    cout<<"Before MergeSorted->";
     print(head);
-
-    int data, i;
-    cout << "Enter position->";
-    cin >> i;
-
-    head = deleteAtPosition(head, i);
+    cout<<"After MergeSorted->";
+    head=mergeSort(head);
     print(head);
 
 

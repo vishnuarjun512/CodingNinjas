@@ -49,6 +49,17 @@ void selectionSort()
     }
 }
 
+void insertAtEnd(int data)
+{
+    Node *newNode=getNode(data);
+    Node *temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=newNode;
+}
+
 void display()
 {
     Node *temp=head;
@@ -67,6 +78,7 @@ int main()
     push(10);
     push(12);
     push(11);
+    insertAtEnd(10);
     printf("Before->");
     display();
     printf("After->");
