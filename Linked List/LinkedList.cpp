@@ -169,6 +169,22 @@ Node * mergeSort(Node *head)
     return head;
 }
 
+Node * reverse(Node *head)
+{
+    Node *curr=head;
+    Node *prev=NULL;
+    Node *next=head->next;
+
+    while(next!=NULL)
+    {
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+        next=next->next;
+    }
+    curr->next=prev;
+    return curr;
+}
 
 void print(Node *head)
 {
@@ -186,13 +202,16 @@ void print(Node *head)
 
 int main()
 {
-
     // Method to take input till input!=-1
     Node *head = takeInput();
     cout<<"Before MergeSorted->";
     print(head);
     cout<<"After MergeSorted->";
     head=mergeSort(head);
+    print(head);
+
+    cout<<"After reversing->";
+    head=reverse(head);
     print(head);
 
 
