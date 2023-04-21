@@ -42,18 +42,19 @@ class BST{
           if(root->left==NULL && root->right==NULL){   
             delete root;
             return NULL;
-          }else if(root->left){
+          }else if(root->right==NULL){
             BinaryTreeNode<int> * leftNodeExists = root->left;
             delete root;
             return leftNodeExists;
-          }else if(root->right){
-            BinaryTreeNode<int> * rightNodeExists = root->left;
+          }else if(root->left==NULL){
+            BinaryTreeNode<int> * rightNodeExists = root->right;
             delete root;
             return rightNodeExists; 
           }else{
             BinaryTreeNode<int> * inOrderS = inOrderSuccessor(root->right);
             root->data = inOrderS->data;
             root->right = deleteData(root->right,inOrderS->data); 
+            return root;
           }
       }else if(root->data > data){
         root->left = deleteData(root->left,data);
@@ -65,7 +66,7 @@ class BST{
     
   public:
     void deleteData(int data){
-      root = deleteData(root,data);
+      this->root = deleteData(this->root,data);
     }
 
   private:
