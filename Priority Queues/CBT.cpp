@@ -2,7 +2,7 @@
 using namespace std;
 template <typename T>
 class BST{
-   public:
+public:
    T data;
    BST * left;
    BST * right;
