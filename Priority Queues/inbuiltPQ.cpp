@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(){
-   priority_queue<int> q;
+   priority_queue<int, vector<int>, greater<int> > q;
    q.push(10);
    q.push(13);
    q.push(1);
@@ -13,7 +13,8 @@ int main(){
    cout<<(q.empty() ? "True":"False")<<endl;
 
    cout<<"Size -> "<<q.size()<<endl;
-   cout<<"Top -> "<<q.top()<<endl;
+   int t = q.top();
+   cout<<"Top ->"<<t<<endl;
 
    while(!q.empty()){
       cout<< q.top() << " ";
