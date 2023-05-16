@@ -59,10 +59,10 @@ void nQueen(int n){
 }
 
 int main(){
-  nQueen(9);
+  nQueen(4);
   cout<<"Final Answer->"<<endl;
-  for(int i=0;i<9;i++){
-    for(int j=0;j<9;j++){
+  for(int i=0;i<4;i++){
+    for(int j=0;j<4;j++){
         cout<<board[i][j]<< " ";
     }
     cout<<endl;
